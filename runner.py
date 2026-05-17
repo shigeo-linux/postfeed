@@ -46,7 +46,7 @@ def run():
         msg = f'Telegram error: {e}'
         logging.error(msg)
         config.set('last_run', now)
-        config.set('last_status', f'Error: {msg}')
+        config.set('last_status', f'Error: {str(e)[:120]}')
         config.save()
         sys.exit(1)
 
@@ -54,7 +54,7 @@ def run():
         msg = str(e)
         logging.error(f"Error: {msg}")
         config.set('last_run', now)
-        config.set('last_status', f'Error: {msg}')
+        config.set('last_status', f'Error: {msg[:120]}')
         config.save()
         sys.exit(1)
 

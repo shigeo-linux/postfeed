@@ -69,14 +69,20 @@ class MainWindow(Gtk.ApplicationWindow):
         status_card.pack_start(status_title, False, False, 0)
 
         self._status_label = Gtk.Label(label='Not yet run', xalign=0)
+        self._status_label.set_line_wrap(True)
+        self._status_label.set_max_width_chars(55)
         self._status_label.get_style_context().add_class('status-pending')
         status_card.pack_start(self._status_label, False, False, 0)
 
         self._last_run_label = Gtk.Label(label='', xalign=0)
+        self._last_run_label.set_ellipsize(3)
+        self._last_run_label.set_max_width_chars(55)
         self._last_run_label.get_style_context().add_class('meta-label')
         status_card.pack_start(self._last_run_label, False, False, 0)
 
         self._next_run_label = Gtk.Label(label='', xalign=0)
+        self._next_run_label.set_ellipsize(3)
+        self._next_run_label.set_max_width_chars(55)
         self._next_run_label.get_style_context().add_class('meta-label')
         status_card.pack_start(self._next_run_label, False, False, 0)
 
@@ -107,8 +113,13 @@ class MainWindow(Gtk.ApplicationWindow):
         grid.set_column_spacing(12)
         grid.set_row_spacing(10)
 
+        def field_label(text):
+            lbl = Gtk.Label(label=text, xalign=1)
+            lbl.get_style_context().add_class('field-label')
+            return lbl
+
         # OpenRouter API key
-        grid.attach(Gtk.Label(label='OpenRouter API Key:', xalign=1), 0, 0, 1, 1)
+        grid.attach(field_label('OpenRouter API Key:'), 0, 0, 1, 1)
         self._api_key_entry = Gtk.Entry()
         self._api_key_entry.set_hexpand(True)
         self._api_key_entry.set_visibility(False)
@@ -117,7 +128,7 @@ class MainWindow(Gtk.ApplicationWindow):
         grid.attach(self._api_key_entry, 1, 0, 1, 1)
 
         # Model
-        grid.attach(Gtk.Label(label='Model:', xalign=1), 0, 1, 1, 1)
+        grid.attach(field_label('Model:'), 0, 1, 1, 1)
         self._model_combo = Gtk.ComboBoxText()
         for m in MODELS:
             self._model_combo.append(m, m)
@@ -126,7 +137,7 @@ class MainWindow(Gtk.ApplicationWindow):
         grid.attach(self._model_combo, 1, 1, 1, 1)
 
         # Telegram token
-        grid.attach(Gtk.Label(label='Telegram Token:', xalign=1), 0, 2, 1, 1)
+        grid.attach(field_label('Telegram Token:'), 0, 2, 1, 1)
         self._tg_token_entry = Gtk.Entry()
         self._tg_token_entry.set_hexpand(True)
         self._tg_token_entry.set_visibility(False)
@@ -135,20 +146,20 @@ class MainWindow(Gtk.ApplicationWindow):
         grid.attach(self._tg_token_entry, 1, 2, 1, 1)
 
         # Telegram chat ID
-        grid.attach(Gtk.Label(label='Telegram Chat ID:', xalign=1), 0, 3, 1, 1)
+        grid.attach(field_label('Telegram Chat ID:'), 0, 3, 1, 1)
         self._tg_chat_entry = Gtk.Entry()
         self._tg_chat_entry.set_text(self.config.telegram_chat_id)
         self._tg_chat_entry.set_placeholder_text('e.g. 123456789')
         grid.attach(self._tg_chat_entry, 1, 3, 1, 1)
 
         # Interval
-        grid.attach(Gtk.Label(label='Send every (hours):', xalign=1), 0, 4, 1, 1)
+        grid.attach(field_label('Send every (hours):'), 0, 4, 1, 1)
         self._interval_spin = Gtk.SpinButton.new_with_range(1, 24, 1)
         self._interval_spin.set_value(self.config.interval_hours)
         grid.attach(self._interval_spin, 1, 4, 1, 1)
 
         # Max emails
-        grid.attach(Gtk.Label(label='Max emails per run:', xalign=1), 0, 5, 1, 1)
+        grid.attach(field_label('Max emails per run:'), 0, 5, 1, 1)
         self._max_spin = Gtk.SpinButton.new_with_range(5, 50, 5)
         self._max_spin.set_value(self.config.max_emails)
         grid.attach(self._max_spin, 1, 5, 1, 1)

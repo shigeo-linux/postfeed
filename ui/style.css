@@ -36,6 +36,11 @@ window {
     color: #7a7060;
 }
 
+.field-label {
+    color: #2a2218;
+    font-size: 13px;
+}
+
 .action-btn {
     background-color: #c8a96e;
     color: #1e1c18;
