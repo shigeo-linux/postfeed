@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Postfeed
+GenericName=Email Digest
+Comment=Gmail to Telegram email digest — AI-powered summary every 12 hours
+Exec=python3 /opt/postfeed/postfeed.py
+Icon=postfeed
+Terminal=false
+Categories=Network;Utility;
+Keywords=gmail;email;telegram;summary;digest;
+StartupNotify=true

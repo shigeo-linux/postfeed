@@ -1,0 +1,9 @@
+[Unit]
+Description=Postfeed — Gmail to Telegram email digest
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /opt/postfeed/runner.py
+User=%i

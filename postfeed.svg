@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <rect width="48" height="48" rx="8" fill="#2b2d30"/>
+  <!-- Envelope body -->
+  <rect x="6" y="14" width="30" height="22" rx="2" fill="#f0ebe0"/>
+  <!-- Envelope flap -->
+  <polygon points="6,14 21,26 36,14" fill="#c8a96e"/>
+  <!-- Envelope bottom lines -->
+  <line x1="6" y1="36" x2="16" y2="26" stroke="#ddd9d0" stroke-width="1"/>
+  <line x1="36" y1="36" x2="26" y2="26" stroke="#ddd9d0" stroke-width="1"/>
+  <!-- Telegram arrow badge -->
+  <circle cx="36" cy="34" r="9" fill="#229ED9"/>
+  <polygon points="30,34 37,30 37,38" fill="#ffffff"/>
+  <line x1="37" y1="34" x2="41" y2="34" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+</svg>
