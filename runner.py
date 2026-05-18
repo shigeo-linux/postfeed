@@ -10,10 +10,12 @@ import logging
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from config import Config, LOG_FILE
+from config import Config, LOG_FILE, CONFIG_DIR
 from gmail_client import fetch_recent_emails
 from summarizer import summarize_emails
 from telegram_client import send_message, TelegramError
+
+os.makedirs(CONFIG_DIR, exist_ok=True)
 
 logging.basicConfig(
     filename=LOG_FILE,
