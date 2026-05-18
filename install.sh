@@ -17,8 +17,8 @@ echo "Installing system dependencies..."
 sudo apt-get update -qq
 sudo apt-get install -y python3-gi python3-gi-cairo gir1.2-gtk-3.0 python3-requests
 
-pip3 install --user --break-system-packages \
-    google-auth-oauthlib google-auth-httplib2 google-api-python-client 2>/dev/null || true
+sudo pip3 install --break-system-packages \
+    google-auth-oauthlib google-auth-httplib2 google-api-python-client
 
 echo "Copying application files..."
 sudo mkdir -p "${INSTALL_DIR}"
