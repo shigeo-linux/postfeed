@@ -53,10 +53,15 @@ cp "${INSTALL_DIR}/postfeed.timer" "${SYSTEMD_USER_DIR}/postfeed.timer"
 # Update service to run as current user
 sed -i "s|User=%i|User=$(whoami)|" "${SYSTEMD_USER_DIR}/postfeed.service"
 
+sudo loginctl enable-linger "$(whoami)"
 export XDG_RUNTIME_DIR="/run/user/$(id -u)"
-systemctl --user daemon-reload
-systemctl --user enable postfeed.timer
-systemctl --user start postfeed.timer
+export DBUS_SESSION_BUS_ADDRESS="unix:path=${XDG_RUNTIME_DIR}/bus"
+if systemctl --user daemon-reload 2>/dev/null; then
+    systemctl --user enable postfeed.timer
+    systemctl --user start postfeed.timer
+else
+    echo "Note: Timer files installed. Run 'systemctl --user enable --now postfeed.timer' after logging in."
+fi
 
 echo ""
 echo "=== Installation complete! ==="
