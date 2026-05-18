@@ -42,6 +42,9 @@ exec python3 /opt/postfeed/postfeed.py "$@"
 EOF
 sudo chmod +x /usr/local/bin/postfeed
 
+echo "Creating config directory..."
+mkdir -p "$HOME/.config/${APP_NAME}"
+
 echo "Installing systemd user timer..."
 mkdir -p "${SYSTEMD_USER_DIR}"
 cp "${INSTALL_DIR}/postfeed.service" "${SYSTEMD_USER_DIR}/postfeed.service"
