@@ -53,6 +53,7 @@ cp "${INSTALL_DIR}/postfeed.timer" "${SYSTEMD_USER_DIR}/postfeed.timer"
 # Update service to run as current user
 sed -i "s|User=%i|User=$(whoami)|" "${SYSTEMD_USER_DIR}/postfeed.service"
 
+export XDG_RUNTIME_DIR="/run/user/$(id -u)"
 systemctl --user daemon-reload
 systemctl --user enable postfeed.timer
 systemctl --user start postfeed.timer
