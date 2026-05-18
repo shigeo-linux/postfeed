@@ -52,9 +52,6 @@ mkdir -p "${SYSTEMD_USER_DIR}"
 cp "${INSTALL_DIR}/postfeed.service" "${SYSTEMD_USER_DIR}/postfeed.service"
 cp "${INSTALL_DIR}/postfeed.timer" "${SYSTEMD_USER_DIR}/postfeed.timer"
 
-# Update service to run as current user
-sed -i "s|User=%i|User=$(whoami)|" "${SYSTEMD_USER_DIR}/postfeed.service"
-
 sudo loginctl enable-linger "$(whoami)"
 export XDG_RUNTIME_DIR="/run/user/$(id -u)"
 export DBUS_SESSION_BUS_ADDRESS="unix:path=${XDG_RUNTIME_DIR}/bus"

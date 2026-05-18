@@ -6,4 +6,3 @@ Wants=network-online.target
 [Service]
 Type=oneshot
 ExecStart=/opt/postfeed/venv/bin/python3 /opt/postfeed/runner.py
-User=%i
